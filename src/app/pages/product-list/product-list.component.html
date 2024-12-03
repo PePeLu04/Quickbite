@@ -1,55 +1,59 @@
+
+
 <div class="row">
     <div class="col-12 text-center p-2">
         <h4>All Products</h4>
     </div>
 </div>
-<div class="row">
-    <div class="col">
-        <ng-container *ngIf="categoryList$ | async as apiResponse">
-            <ng-container *ngFor="let item of apiResponse.data">
-                <button class="btn btn-primary mx-2" (click)="getProductByCategory(item.categoryId)"  *ngIf="item.parentCategoryId == 0" > {{item.categoryName}}</button>
-            </ng-container>
-        </ng-container> 
-    </div>
-</div>
+<!-- Lista de todos los productos teniendo el modelo de productos y la api  -->
 
-<div class="row"> 
-    @for (item of productList; track 'productId') {
-    <div class="col-3">
-        <div class="box-shadow">
-            <div class="card mt-2">
-                <!-- <img class="img-fluid" [src]="item.productImageUrl" class="card-img-top" alt="..."> -->
-                <img class="img-fluid" appLazyImage [attr.data-src]="item.productImageUrl" src="" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                    <div class="row">
-                        <div class="col-8">
-                            <h5 class="card-title" title="{{item.productShortName}}">{{item.productShortName}}</h5>
-                        </div>
-                        <div class="col-4 text-end">
-                            <p class="card-text"><span class="text-danger fw-semibold me-2">$ {{item.productPrice}}</span>
-                                
-                            </p>
-                        </div>
-                    </div>
-                   
-                  
-                    <div class="row">
-                        <div class="col-6">
-                            <span><i class="fa-solid fa-star  m-0" style="color: #f1f50f;"></i></span>
-                            <span><i class="fa-solid fa-star  m-0" style="color: #f1f50f;"></i></span>
-                            <span><i class="fa-solid fa-star-half-stroke  m-0" style="color: #f1f50f;"></i></span>
-                            <span class="text-muted">(25)</span>
-                        </div>
-                        <div class="col-6">
-                            <p class="text-end pb-0 mb-0"><button class="btn  text-end btn-sm btn-success p-2"><i
-                                        class="fa-solid fa-cart-plus fs-5" style="color: #0c0d0d;"></i></button></p>
-                        </div>
+<div class="row" [ngStyle]="{ 'background-image': 'url(\'/assets/images/logoquick.jpeg\')' , backgroundalign: 'center'}">
+    <div class="col-12">
+      @for (product of productList;track product.id){
+        <div class="row g-3">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.nombre}}</h5>
+                        <p class="card-text">{{product.descripcion}}</p>
                     </div>
                 </div>
-
-
             </div>
         </div>
+      }
     </div>
-    } 
+  <form #productForm="ngForm" (ngSubmit)="(crearProducto(productForm))"  class="product-form">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" ngModel required #nombre="ngModel" class="form-control">
+      <div *ngIf="nombre.invalid && nombre.touched" class="error-message">Nombre es requerido.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="precio">Precio:</label>
+      <input type="number" id="precio" name="precio" ngModel required #precio="ngModel" class="form-control">
+      <div *ngIf="precio.invalid && precio.touched" class="error-message">Precio es requerido.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="descripcion">Descripción:</label>
+      <input type="text" id="descripcion" name="descripcion" ngModel required #descripcion="ngModel" class="form-control">
+      <div *ngIf="descripcion.invalid && descripcion.touched" class="error-message">Descripción es requerida.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="img">Imagen:</label>
+      <input type="text" id="img" name="img" ngModel required #img="ngModel" class="form-control">
+      <div *ngIf="img.invalid && img.touched" class="error-message">Imagen es requerida.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="tipo">Tipo:</label>
+      <input type="text" id="tipo" name="tipo" ngModel required #tipo="ngModel" class="form-control">
+      <div *ngIf="tipo.invalid && tipo.touched" class="error-message">Tipo es requerido.</div>
+    </div>
+
+    <button type="submit" class="submit-button" [disabled]="productForm.invalid">Crear producto</button>
+  </form>
+
 </div>
