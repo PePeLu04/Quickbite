@@ -18,7 +18,7 @@ import {Prodcut_Request_Update} from "../../../core/model/DTO/Product_Request_Up
 })
 export class HelloModalComponent {
   @ViewChild('f') f!: NgForm;
-
+  @Output() productUpdated = new EventEmitter<any>();
 
   constructor( private productService: ProductService, public dialogRef: MatDialogRef<HelloModalComponent>,
                @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -39,24 +39,27 @@ export class HelloModalComponent {
     this.dialogRef.close();
   }
 
-  onSubmit(f:NgForm): void {
-    if(!f.valid) return;
+  onSubmit(f: NgForm): void {
+    if (!f.valid) return;
 
+    try {
+      this.productService
+        .updateProduct({ productoId: this.data.product.id, ...f.value })
+        .subscribe(
+          (updatedProduct: any) => {
+            console.log('Producto actualizado en el servidor:', updatedProduct);
 
-     try{
-      // Llama al servicio de productos para guardar los cambios en el servidor
-      this.productService.updateProduct({productoId:this.data.product.id, ...f.value}).subscribe(
-        (updatedProduct: any) => {
-          this.closeModal();
-          console.log('Producto actualizado en el servidor:', updatedProduct);
-        }
-      );
-    }catch (error) {
-       console.error('Error al actualizar el producto:', error);
+            // Emitir el producto actualizado
+            this.productUpdated.emit(updatedProduct);
+
+            this.closeModal();
+          },
+          (error) => {
+            console.error('Error al actualizar el producto:', error);
+          }
+        );
+    } catch (error) {
+      console.error('Error al actualizar el producto:', error);
     }
-
   }
-
-
-
 }

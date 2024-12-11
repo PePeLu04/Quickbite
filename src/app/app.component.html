@@ -28,9 +28,8 @@
                             pages
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">About Us</a></li>
-                            <li><a class="dropdown-item" href="#">Contact Us</a></li>
-                            <li><a class="dropdown-item" href="#">Terms and Conditions</a></li>
+                            <li><a class="dropdown-item" (click)="toAbout()">About Us</a></li>
+                            <li><a class="dropdown-item" (click)="toContactUs()">Contact Us</a></li>
                         </ul>
                     </li>
 
@@ -38,10 +37,6 @@
 
                     <li class="nav-item">
                         <a class="nav-link fw-semibold text-uppercase text-black  me-1" href="#">Log Out</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass fs-5"
-                                style="color: #0c0d0d;"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"> </a>

@@ -24,6 +24,7 @@ export class EditproductsComponent  {
   @ViewChild('searchInput', { static: false }) searchInput!: ElementRef;
   $search:Observable<any[]> = of([]);
   errorMessage: string = '';
+  productList: any[] = [];
 
   constructor(private productService: ProductService,
               private empresaService: EmpresaService,
@@ -60,9 +61,19 @@ export class EditproductsComponent  {
 
   // Método para editar un producto
   editProduct(product: any): void {
-    console.log(product)
     const modalRef = this.modalService.openDialog(HelloModalComponent, {
-      product: product
+      product: product,
+    });
+
+    // Escuchar el evento del producto actualizado
+    modalRef.componentInstance.productUpdated.subscribe((updatedProduct: any) => {
+      console.log('Producto actualizado:', updatedProduct);
+
+      // Actualizar la lista de productos con los datos actualizados
+      const index = this.productList.findIndex((p) => p.id === updatedProduct.id);
+      if (index !== -1) {
+        this.productList[index] = updatedProduct;
+      }
     });
   }
 

@@ -3,6 +3,8 @@ import { ProductListComponent } from './pages/product-list/product-list.componen
 import {EditproductsComponent} from "./pages/editproducts/editproducts.component";
 import {HomeComponent} from "./pages/home/home.component";
 import {LoginComponent} from "./pages/login/login.component";
+import {AboutComponent} from "./pages/about/about.component";
+import {ContactusComponent} from "./pages/contactus/contactus.component";
 
 export const routes: Routes = [
     {
@@ -17,6 +19,14 @@ export const routes: Routes = [
     {
       path:'editproducts',
       component:EditproductsComponent
+    },
+    {
+      path:'About',
+      component:AboutComponent
+    },
+    {
+      path:'ContactUs',
+      component:ContactusComponent
     },
   {
     path:'home',

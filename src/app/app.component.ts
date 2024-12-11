@@ -27,4 +27,12 @@ export class AppComponent implements OnInit{
   toEditProducts() {
     this.router.navigate(['editproducts'])
   }
+
+  toAbout() {
+    this.router.navigate(['About'])
+  }
+
+  toContactUs() {
+    this.router.navigate(['ContactUs'])
+  }
 }
