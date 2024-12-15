@@ -5,7 +5,7 @@ export interface Producto{
   nombre: string
   precio: number
   descripcion: string
-  img: string
+  imagen: any
   tipo: string
   idEmpresa:Empresa,/*
   idempresa?: number*/

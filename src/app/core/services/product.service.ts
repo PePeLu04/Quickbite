@@ -64,6 +64,20 @@ export class ProductService {
   addProduct(producto: Producto): Observable<APIResponseModel> {
     return this.http.post<APIResponseModel>(`${this.apiUrl}/addProduct`, producto);
   }
+  guardarProductoConImagen(nombre: string, descripcion: string, precio: number, tipo: string, imagen: File, idEmpresa: number): Observable<APIResponseModel> {
+    const formData: FormData = new FormData();
+    formData.append('nombre', nombre);
+    formData.append('descripcion', descripcion);  // Agregar la descripción al FormData
+    formData.append('precio', precio.toString());  // Convertir precio a string
+    formData.append('tipo', tipo);  // Agregar el tipo al FormData
+    formData.append('imagen', imagen, imagen.name);  // Aquí se agrega la imagen al FormData
+    formData.append('idEmpresa', idEmpresa.toString()); // Convertir idEmpresa a string, asegurándose que sea un número
+  
+    // Enviar la solicitud POST al backend
+    return this.http.post<APIResponseModel>(`${this.apiUrl}/guardar`, formData);
+  }
+  
+  
 
   onRegister (obj: any): Observable<APIResponseModel>{
     return this.http.post<APIResponseModel>(`${this.apiUrl}RegisterCustomer`, obj);
@@ -72,6 +86,11 @@ export class ProductService {
   onLogin (obj: any): Observable<APIResponseModel>{
     return this.http.post<APIResponseModel>(`${this.apiUrl}login`, obj);
   }
+  updateProductWithImage(productoId: number, formData: FormData): Observable<APIResponseModel> {
+    const url = `${this.apiUrl}/editProductWithImage/${productoId}`;
+    return this.http.put<APIResponseModel>(url, formData);
+  }
+  
 
 
 }
