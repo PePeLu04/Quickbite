@@ -7,6 +7,8 @@ import {take} from "rxjs";
 })
 export class ModalService {
 
+  //Este es el servicio modal que se encarga de abrir y cerrar los modales
+
   constructor(public dialog: MatDialog) {}
 
   openDialog(component: any,data:any={},fn?:any): MatDialogRef<any> {

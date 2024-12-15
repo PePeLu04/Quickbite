@@ -16,6 +16,7 @@ import {EmpresaService} from "../../core/services/empresa.service";
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
+//Este es el componente de la lista de productos de la empresa actual
 export class ProductListComponent implements OnInit{
 
 
@@ -28,6 +29,7 @@ destroyRef = inject(DestroyRef)
   constructor(private companyService: EmpresaService) {
   }
 
+  //Esto es para obtener los productos de la empresa actual
 ngOnInit(): void {
   this.companyService.selectCompany(this.companyService.idEmpresa.id);
   this.companyService.getCompanyId();
@@ -48,6 +50,7 @@ getProductsByType(type: string) {
   })
 }
 
+//Esto es para crear un producto en la empresa actual
   crearProducto(form: NgForm) {
     const productData = { ...form.value, idEmpresa: this.companyService.idEmpresa };
     this.productService.addProduct(productData).subscribe((response) => {

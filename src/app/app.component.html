@@ -9,7 +9,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- Nav Items -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div *ngIf="isLoggedIn" class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0  text-center ">
 
                     <li class="nav-item dropdown">
@@ -36,7 +36,7 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold text-uppercase text-black  me-1" href="#">Log Out</a>
+                        <a class="nav-link fw-semibold text-uppercase text-black  me-1" href="#" (click)="authService.logout()">Log Out</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"> </a>

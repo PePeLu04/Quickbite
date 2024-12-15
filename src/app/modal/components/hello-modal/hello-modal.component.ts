@@ -17,12 +17,16 @@ import {Prodcut_Request_Update} from "../../../core/model/DTO/Product_Request_Up
   styleUrl: './hello-modal.component.css'
 })
 export class HelloModalComponent {
+
+  //Este es el componente modal que se abre al editar un producto
   @ViewChild('f') f!: NgForm;
   @Output() productUpdated = new EventEmitter<any>();
 
   constructor( private productService: ProductService, public dialogRef: MatDialogRef<HelloModalComponent>,
                @Inject(MAT_DIALOG_DATA) public data: any) {
   }
+
+  // Cargar los datos del producto en el formulario
   ngAfterViewInit() {
     console.log(this.f)
     setTimeout(() => {
@@ -35,10 +39,12 @@ export class HelloModalComponent {
 
   }
 
+  // Cerrar el modal
   closeModal(): void {
     this.dialogRef.close();
   }
 
+  // Actualizar el producto
   onSubmit(f: NgForm): void {
     if (!f.valid) return;
 

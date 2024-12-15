@@ -11,6 +11,8 @@ import {Empresa} from "../model/Empresa";
 })
 export class EmpresaService {
 
+  //Este es el servicio de la empresa que se encarga de manejar peticiones sobre una empresa
+
   public idEmpresa: Empresa={
     id: 0,
     horario: '',
@@ -24,16 +26,19 @@ export class EmpresaService {
 
   constructor(private http: HttpClient) {this.idEmpresa.id = parseInt(localStorage.getItem('idEmpresa')|| '0'); }
 
+  //obtener todas las empresas
   getCompanies(): Observable<APIResponseModel> {
     return this.http.get<APIResponseModel>(`${this.apiUrl}/getall`);
   }
 
+  //seleccionar una empresa
   selectCompany(id_empresa: number) {
     this.idEmpresa.id = id_empresa;
     localStorage.setItem('idEmpresa', JSON.stringify(id_empresa));
     console.log(JSON.stringify(id_empresa))
   }
 
+  //obtener la empresa seleccionada
   getCompanyId() {
     return this.idEmpresa.id;
   }

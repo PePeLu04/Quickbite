@@ -14,6 +14,7 @@ import {JsonPipe} from "@angular/common";
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
+//Este es el componente de inicio de sesión de la aplicación
 export class HomeComponent implements OnInit{
 
   companiesList: Empresa [] = [];
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit{
 
   constructor(private companyService: EmpresaService) { }
 
+  //obtener las empresas del backend
   ngOnInit(): void {
     this.companyService.getCompanies().pipe(takeUntilDestroyed(this.destroyRef)).subscribe((res: APIResponseModel)=>{
       console.log(res)

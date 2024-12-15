@@ -21,6 +21,8 @@ import {EmpresaService} from "../../core/services/empresa.service";
   styleUrls: ['./editproducts.component.css']
 })
 export class EditproductsComponent  {
+
+  //Este es el componente que se encarga de editar los productos de la empresa
   @ViewChild('searchInput', { static: false }) searchInput!: ElementRef;
   $search:Observable<any[]> = of([]);
   errorMessage: string = '';
@@ -31,6 +33,7 @@ export class EditproductsComponent  {
               private modalService: ModalService,
               private  destroyRef?: DestroyRef) { }
 
+  //Metodo para buscar productos de la empresa por su nombre y id
   ngAfterViewInit(): void {
     this.$search = fromEvent(this.searchInput.nativeElement, 'input').pipe(
       debounceTime(500),
@@ -77,6 +80,7 @@ export class EditproductsComponent  {
     });
   }
 
+  // Metodo para eliminar un producto
   deleteProduct(product: Producto): void {
     if (product.id !== undefined) {
       this.productService.deleteProductById(product.id).subscribe(response => {

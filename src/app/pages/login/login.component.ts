@@ -14,6 +14,7 @@ import {EmpresaService} from "../../core/services/empresa.service";
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+//Este es el componente que se encarga de manejar el inicio de sesión
 export class LoginComponent {
   errorMessage = '';
 
@@ -23,6 +24,7 @@ export class LoginComponent {
   password = this.authService.admin.password;
   dni = this.authService.admin.dni;
 
+  //Este es el método que se encarga de realizar el inicio de sesión del usuario y redirigirlo a la página principal de la empresa
   login() {
     this.authService.login(this.username, this.password, this.dni).subscribe(
       response => {

@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   //endpoint:'http://localhost:9090/api/',
+  endpoint: 'https://uberetas.onrender.com/api',
   apiUser:'user/',
   apiCompany:'empresas/',
   apiProduct:'productos/',
@@ -15,13 +16,4 @@ export const environment = {
     appId: "1:307588616847:web:991e485a206ac9f90fd6fa",
     measurementId: "G-9SVJWG2ZQZ"
   },
-
-  api:{
-    endpoint: 'https://uberetas.onrender.com/api',
-
-    apiEmpresa: 'empresas',
-    apiAdmin: 'admin',
-    apiPedido: 'pedido',
-    apiProduct: 'productos',
-  }
 };
